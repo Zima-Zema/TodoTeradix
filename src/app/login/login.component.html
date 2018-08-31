@@ -1,0 +1,37 @@
+<div class="boxed-view">
+  <div class="boxed-view__box">
+    <h1>Todos</h1>
+    <p>{{errorMsg}}</p>
+    <div *ngIf="email.invalid && (email.dirty || email.touched)" class="alert alert-danger">
+        <div *ngIf="email.errors.required">Email is required.</div>
+        <div *ngIf="email.errors.email && !email.errors.required">Invalid email.</div>
+      </div>
+      
+      <div *ngIf="password.invalid && (password.dirty || password.touched)" class="alert alert-danger">
+        <div *ngIf="password.errors.required">password is required.</div>
+      </div>
+
+      <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" noValidate class="boxed-view__form">
+          <input
+            email
+              type="email"
+              ref="email"
+              name="email"
+              id="txt-email"
+              placeholder="Email"
+              formControlName="email"
+              />
+          <input
+              type="password"
+              ref="password"
+              name="password"
+              id="txt-password"
+              placeholder="Password"
+              formControlName="password"
+              />
+          <button class="button" type="submit" [disabled]="!loginForm.valid" >Login</button>
+      </form>
+      <!-- <Link to="/signup">Have An Account</Link> -->
+      <a class="button--router" routerLink="/signup">Have An Account</a>
+  </div>
+</div>

@@ -1,0 +1,17 @@
+<div class="item">
+  <div>
+      <h2>{{todo.title}}</h2>
+      <p class="item__msg">{{todo.subject}}</p>
+      <p class="item__msg">{{todo.completedAt | date:'medium'}}</p>
+      <div>
+          <div>
+          <label class="container">Complete
+              <input type="checkbox" [checked]="todo.completed" (change)="onComplete($event)">
+              <span class="checkmark"></span>
+            </label>
+        </div>
+          <button class="button button--pill" (click)="onTodoUpdated(todo)">Uddate</button>
+          <button class="button button--pill" (click)="onTodoDeleted(todo)">Delete</button>
+      </div>
+  </div>
+</div>

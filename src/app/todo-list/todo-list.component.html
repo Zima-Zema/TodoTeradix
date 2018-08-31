@@ -1,0 +1,25 @@
+<button class="button" (click)="onInsertTodo()">Add Todo</button>
+<p>{{errormsg}}</p>
+<div>
+    <div class="checkbox">
+        <input 
+        name="checkbox"
+        id="checkbox_id"
+        type="checkbox"  
+        [checked]="completetFilter" 
+        (change)="onFilter($event)" />
+        
+        <label for="checkbox_id"></label>
+    </div>
+  <input type="text" placeholder="Filter By Title" [(ngModel)]="searchText" style="width: 100%; box-sizing:border-box;">
+  <div style="position: relative;">
+    <div *ngIf="todosList.length; else infoTxt ">
+      <app-todo *ngFor="let todo of todosList | filter : searchText" [todo]="todo" (todoUpdated)="onUpdateTodo($event)" (todoDeleted)="onDeleteTodo($event)"></app-todo>
+    </div>
+
+    <ng-template #infoTxt>
+        <div class="item"><p class="item__status-msg">No Todos Found</p></div>
+    </ng-template>
+
+  </div>
+</div>
