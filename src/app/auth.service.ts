@@ -7,7 +7,7 @@ import { Observable } from '../../node_modules/rxjs';
   providedIn: 'root'
 })
 export class AuthService {
-  baseUrl = 'http://localhost:3000';
+  baseUrl = 'https://teradix.herokuapp.com';
   public isAuthenticated(): boolean {
     const token = localStorage.getItem('token');
     if (token) {
@@ -25,20 +25,20 @@ export class AuthService {
   }
 
   register(user: User): Observable<HttpResponse<Object>> {
-    return this.http.post<HttpResponse<Object>>(`${this.baseUrl}/users/register`, user, {
+    return this.http.post<HttpResponse<Object>>(`${this.baseUrl}/api/users/register`, user, {
       headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
       observe: 'response'
     });
   }
 
-  logIn(email: string, password: string): Observable<HttpResponse<Object>> {
-    return this.http.post<HttpResponse<Object>>(`${this.baseUrl}/users/login`, { email, password }, {
+  logIn(email: string, password: string): Observable<HttpResponse<any>> {
+    return this.http.post<HttpResponse<Object>>(`${this.baseUrl}/api/users/login`, { email, password }, {
       headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
       observe: 'response'
     });
   }
 
   logOut() {
-    return this.http.delete<any>(`${this.baseUrl}/users/logout`);
+    return this.http.delete<any>(`${this.baseUrl}/api/users/logout`);
   }
 }

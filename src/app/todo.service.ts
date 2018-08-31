@@ -8,40 +8,40 @@ import { Todo } from './todo';
   providedIn: 'root'
 })
 export class TodoService {
-  baseUrl = 'http://localhost:3000';
+  baseUrl = 'https://teradix.herokuapp.com';
 
   constructor(private http: HttpClient) { }
 
   getTodos() {
-    return this.http.get<Todo[]>(`${this.baseUrl}/todos`, {
+    return this.http.get<Todo[]>(`${this.baseUrl}/api/todos`, {
       headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
       observe: 'response'
     });
   }
 
   getTodoById(_id: string) {
-    return this.http.get<Todo>(`${this.baseUrl}/todos/${_id}`, {
+    return this.http.get<Todo>(`${this.baseUrl}/api/todos/${_id}`, {
       headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
       observe: 'response'
     });
   }
 
   addTodo(todo: Todo) {
-    return this.http.post<Todo>(`${this.baseUrl}/todos`, todo, {
+    return this.http.post<Todo>(`${this.baseUrl}/api/todos`, todo, {
       headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
       observe: 'response'
     });
   }
 
   updateTodo(_id: string, todo: Todo) {
-    return this.http.put(`${this.baseUrl}/todos/${_id}`, todo, {
+    return this.http.put(`${this.baseUrl}/api/todos/${_id}`, todo, {
       headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
       observe: 'response'
     });
   }
 
   removeTodo(_id: string) {
-    return this.http.delete<Todo>(`${this.baseUrl}/todos/${_id}`, {
+    return this.http.delete<Todo>(`${this.baseUrl}/api/todos/${_id}`, {
       headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
       observe: 'response'
     });

@@ -16,7 +16,8 @@ import { TodoComponent } from './todo/todo.component';
 import { TodoCUComponent } from './todo-cu/todo-cu.component';
 import { FilterPipe } from './filter.pipe';
 import { AuthGuardService } from './auth-guard.service';
-
+import { NotfoundComponent } from './notfound/notfound.component';
+import { GuardService } from './guard.service';
 @NgModule({
   declarations: [
     AppComponent,
@@ -27,7 +28,8 @@ import { AuthGuardService } from './auth-guard.service';
     TodoListComponent,
     TodoComponent,
     TodoCUComponent,
-    FilterPipe
+    FilterPipe,
+    NotfoundComponent
   ],
   imports: [
     BrowserModule,
@@ -40,7 +42,7 @@ import { AuthGuardService } from './auth-guard.service';
     provide: HTTP_INTERCEPTORS,
     useClass: AuthInterceptorService,
     multi: true
-  }, AuthGuardService],
+  }, AuthGuardService, GuardService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
